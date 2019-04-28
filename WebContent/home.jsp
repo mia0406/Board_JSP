@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>JSP로만 구현하는 게시판</h3>
-<form action="login.jsp" method="post">
+<form action="login.jsp" method="post" onsubmit="return checkCondition()">
 	<table>
 		<tr>
 			<td>ID</td>
@@ -24,5 +24,26 @@
 		</tr>
 	</table>
 </form>
+<script>
+function checkCondition(){
+	
+	var id=document.forms[0].ids.value;
+	var password = document.forms[0].passwd.value;
+	
+	if(id == null || id == ""){
+		
+		alert("아이디를 입력하세요.");
+		return false;
+	}
+	
+	if(password == null || password == ""){
+		
+		alert("패스워드를 입력하세요.");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 </body>
 </html>
