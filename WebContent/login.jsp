@@ -26,7 +26,7 @@
 	try {
 			Class.forName(driver);
 			conn=DriverManager.getConnection(url, userDB, passwordDB);
-
+			
 			pstmt=conn.prepareStatement("SELECT * FROM USERS where id=?"); 
 			//prepareStatement는 Statement와 다르게 ?로 지정된 값을 필요 할 때 마다 이용할수있다.
 			pstmt.setString(1,id);
@@ -35,18 +35,27 @@
 	 		if(rs.next()){  
 	 			
 	  			if(password.equals(rs.getString("PASSWORD"))){ 
-	   				session.setAttribute("id",id); // 세션값 설정
-	   				out.println("<script>");
-	   				out.println("location.href='main.jsp'"); 
-	   				//저장된 정보와 아이디와 비밀번호가 일치하면 main.jsp로 보낸다.
-	   				out.println("</script>");
+	  				
+	  				if(id.equals("admin")){
+	  					session.setAttribute("id",id);
+		   				out.println("<script>");
+		   				out.println("location.href='mainAdmin.jsp'"); 
+		   				out.println("</script>");
+	  				}
+	  				else{
+		   				session.setAttribute("id",id); // 세션값 설정
+		   				out.println("<script>");
+		   				out.println("location.href='main.jsp'"); 
+		   				//저장된 정보와 아이디와 비밀번호가 일치하면 main.jsp로 보낸다.
+		   				out.println("</script>");
+	  				}
 	  			}
 	  			else{
 	  				out.println("<script>");
 	  		 		out.println("location.href='home.jsp'"); 
 	  		 		out.println("</script>");		
 	  			}
-	 		}		
+	 		}	
 		} 
 		catch (ClassNotFoundException e) {			
 			System.out.println("jdbc driver 로딩 실패");
