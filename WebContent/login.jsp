@@ -1,34 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="javax.sql.*"%>
+<%@page import="javax.naming.*"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 - 로그인</title>
+<title>게시판 - 로그인(실제 기능 수행)</title>
 </head>
 <body>
-<script>
 <%
 	String id=request.getParameter("ids");
 	String password=request.getParameter("passwd");
-	String redirectUrl = "home.jsp";
 	
-	// 이제는 DB 연결을 해서 그 DB랑 비교해서 있다면 넘어가고, 아니면 말아야 된다.
-	if(id.equals("mia")){		
-		if(password.equals("mia")){
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String userDB = "mia";
+	String passwordDB = "mia";
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 
-			redirectUrl="main.jsp";			
+	try {
+			Class.forName(driver);
+			conn=DriverManager.getConnection(url, userDB, passwordDB);
+
+			pstmt=conn.prepareStatement("SELECT * FROM USERS where id=?"); 
+			//prepareStatement는 Statement와 다르게 ?로 지정된 값을 필요 할 때 마다 이용할수있다.
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+			
+	 		if(rs.next()){  
+	 			
+	  			if(password.equals(rs.getString("PASSWORD"))){ 
+	   				session.setAttribute("id",id); // 세션값 설정
+	   				out.println("<script>");
+	   				out.println("location.href='main.jsp'"); 
+	   				//저장된 정보와 아이디와 비밀번호가 일치하면 main.jsp로 보낸다.
+	   				out.println("</script>");
+	  			}
+	  			else{
+	  				out.println("<script>");
+	  		 		out.println("location.href='home.jsp'"); 
+	  		 		out.println("</script>");		
+	  			}
+	 		}		
+		} 
+		catch (ClassNotFoundException e) {			
+			System.out.println("jdbc driver 로딩 실패");
+		} 
+		catch (SQLException e) {			
+			System.out.println("오라클 연결 실패");
 		}
-	}
-	
-	if(redirectUrl.equals("home.jsp")){
 %>
-		alert("등록되지 않은 회원입니다.");
-<%		
-	}
-	
-	response.sendRedirect(redirectUrl);
-%>
-</script>
 </body>
 </html>

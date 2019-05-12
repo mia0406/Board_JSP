@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>회원가입</h2>
-<form>
+<form method="post" action="join.jsp" onsubmit="return checkCondition()">
 	<table>
 		<tr>
 			<td>ID</td>
@@ -28,5 +28,34 @@
 		</tr>
 	</table>
 </form>
+
+<script>
+function checkCondition(){
+	
+	var id=document.forms[0].ids.value;
+	var password = document.forms[0].passwd.value;
+	var name = document.forms[0].name.value;
+	
+	if(id == null || id == ""){
+		
+		alert("아이디를 입력하세요.");
+		return false;
+	}
+	
+	if(password == null || password == ""){
+		
+		alert("패스워드를 입력하세요.");
+		return false;
+	}
+	
+	if(name = null || name == ""){
+	
+		alert("이름을 입력하세요.");
+		return false;
+	}
+
+	return true;
+}
+</script>
 </body>
 </html>
