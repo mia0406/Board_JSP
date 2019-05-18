@@ -12,6 +12,7 @@
 <body>
 <h3>Welcome to JSP 게시판</h3>
 <p><%= session.getAttribute("id") %>님 안녕하세요</p>
+<!-- https://arabcoding.tistory.com/38 -->
 <table border="1">
 	<tr>
 		<th>번호</th>
@@ -48,7 +49,7 @@
 %>
 	<tr>
 		<td><%= rs.getString("NUM")%></td>
-		<td><%= rs.getString("TITLE")%></td>
+		<td><a href="pageDetail.jsp?title=<%= rs.getString("TITLE")%>"><%= rs.getString("TITLE")%></a></td>
 		<td><%= rs.getString("WRITER")%></td>
 		<td><%= rs.getString("WRITEDATE")%></td>
 		<td><%= rs.getString("HITS")%></td>
