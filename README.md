@@ -1,6 +1,14 @@
 # Board_JSP
-### JSP로만 구현하는 게시판
-### MVC 구조 사용하지 않고 게시판 구현하기
+### 1. JSP로만 구현하는 게시판 (MVC 구조 사용 X)
+2. MVC1 구조 이용하여 JSP 게시판
+3. Connection Pool 이용하여 MVC1 + JSP 게시판
+4. MVC2 + JSP 게시판
+5. Servlet으로만 게시판
+6. Spring 이용한 JSP 게시판
+7. CDI 이용한 게시판
+8. React.js 이용한 게시판
+9. Angular.js 이용한 게시판
+10. Vue.js 이용한 게시판
 
 #### 구현할 내용
 1. 로그인/로그아웃
