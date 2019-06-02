@@ -21,13 +21,6 @@
 		<th>날짜</th>
 		<th>조회수</th>
 	</tr>
-	<tr>
-		<td>0</td>
-		<td>Sample</td>
-		<td>mia</td>
-		<td>2019.4.28</td>
-		<td>10000</td>
-	</tr>
 <% 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -49,7 +42,7 @@
 %>
 	<tr>
 		<td><%= rs.getString("NUM")%></td>
-		<td><%= rs.getString("TITLE")%></td>
+		<td><a href="pageDetail.jsp?num=<%= rs.getString("num")%>"><%= rs.getString("title")%></a></td>
 		<td><%= rs.getString("WRITER")%></td>
 		<td><%= rs.getString("WRITEDATE")%></td>
 		<td><%= rs.getString("HITS")%></td>
@@ -68,5 +61,6 @@
 <br/>
 <button type="button" onclick="location.href='writeForm.jsp'">글쓰기</button>
 <button type="button" onclick="location.href='logout.jsp'">로그아웃</button>
+<button type="button" onclick="location.href='userManage.jsp'">사용자 정보</button>
 </body>
 </html>

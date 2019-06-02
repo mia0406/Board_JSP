@@ -11,7 +11,7 @@
 </head>
 <body>
 <%
-	String title = request.getParameter("title");
+	String num = request.getParameter("num");
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -29,8 +29,13 @@
 		Class.forName(driver);
 		conn = DriverManager.getConnection(url, id, password);
 		
-		pstmt = conn.prepareStatement("select * from ARTICLE where title=?");
-		pstmt.setString(1, title);
+		//pstmt = conn.prepareStatement("update ARTICLE set hits=(SELECT hits FROM ARTICLE where num=?)+1 where num=?");
+		//pstmt.setString(1, num);
+		//pstmt.setString(2, num);
+		//pstmt.executeUpdate();
+		
+		pstmt = conn.prepareStatement("select * from ARTICLE where num=?");
+		pstmt.setString(1, num);
 		rs = pstmt.executeQuery();
 		    
 		while(rs.next()){
@@ -69,12 +74,17 @@
 %>
 
 <br>
-<button onclick="location.href='modifyForm.jsp'">글 수정</button>
 <% 
 	if(session.getAttribute("id").equals(person)){
 %>
-		<button onclick="location.href='deletePage.jsp'">글 삭제</button>
+		<button onclick="location.href='modifyForm.jsp?num=<%=num%>'">글 수정</button>		
 <% 			
+	}
+	
+	if(session.getAttribute("id").equals(person) || session.getAttribute("id").equals("admin")){
+%>
+		<button onclick="location.href='deletePage.jsp?num=<%=num%>'">글 삭제</button>
+<% 		
 	}
 %>
 </body>
