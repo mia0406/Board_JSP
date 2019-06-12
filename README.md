@@ -1,4 +1,4 @@
-# Board_JSP
+# Board_JSP_1st
 ### 1. JSP로만 구현하는 게시판 (MVC 구조 사용 X)
 2. MVC1 구조 이용하여 JSP 게시판
 3. Connection Pool 이용하여 MVC1 + JSP 게시판
