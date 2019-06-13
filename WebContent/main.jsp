@@ -42,7 +42,7 @@
 %>
 	<tr>
 		<td><%= rs.getString("NUM")%></td>
-		<td><a href="pageDetail.jsp?num=<%= rs.getString("num")%>"><%= rs.getString("title")%></a></td>
+		<td><a href="updateHits.jsp?num=<%= rs.getString("num")%>"><%= rs.getString("title")%></a></td>
 		<td><%= rs.getString("WRITER")%></td>
 		<td><%= rs.getString("WRITEDATE")%></td>
 		<td><%= rs.getString("HITS")%></td>
