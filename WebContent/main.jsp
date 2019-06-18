@@ -12,7 +12,8 @@
 <body>
 <h3>Welcome to JSP 게시판</h3>
 <p><%= session.getAttribute("id") %>님 안녕하세요</p>
-<!-- https://arabcoding.tistory.com/38 -->
+<!-- https://arabcoding.tistory.com/38 참고 -->
+<!-- https://seinarin.tistory.com/11(페이징) 참고 -->
 <table border="1">
 	<tr>
 		<th>번호</th>
