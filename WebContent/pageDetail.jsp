@@ -86,6 +86,12 @@
 		<button onclick="location.href='deletePage.jsp?num=<%=num%>'">글 삭제</button>
 <% 		
 	}
+	
+	if(!session.getAttribute("id").equals(person)){
+%>
+		<button onclick="location.href='recommand.jsp?num=<%= num%>'">추천</button>
+<% 
+	}
 %>
 </body>
 </html>
