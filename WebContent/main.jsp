@@ -36,7 +36,24 @@
 	try {
 		Class.forName(driver);
 		conn=DriverManager.getConnection(url, userDB, passwordDB);
+		
+		// 추천 상위노출(3개)
+		pstmt=conn.prepareStatement("SELECT * FROM ARTICLE ORDER BY recommand limit 3"); 
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()){
+%>
+		<tr>
+			<td>추천!</td>
+			<td><a href="updateHits.jsp?num=<%= rs.getString("num")%>"><%= rs.getString("title")%></a></td>
+			<td><%= rs.getString("WRITER")%></td>
+			<td><%= rs.getString("WRITEDATE")%></td>
+			<td><%= rs.getString("HITS")%></td>	
+		</tr>
+<%
+		}
 
+		// 모든 article 
 		pstmt=conn.prepareStatement("SELECT * FROM ARTICLE ORDER BY num"); 
 		rs=pstmt.executeQuery();
 
