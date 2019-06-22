@@ -23,8 +23,6 @@
 		Class.forName(driver);
 		conn = DriverManager.getConnection(url, id, password);
 		
-		// 한사람당 글당 한번만 추천 가능하도록 만들수는 없을까?
-		
 		pstmt=conn.prepareStatement("SELECT recommand FROM ARTICLE where num=?"); 
 		pstmt.setString(1, num);
 		rs=pstmt.executeQuery();

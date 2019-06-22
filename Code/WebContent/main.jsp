@@ -22,6 +22,7 @@
 		<th>작성자</th>
 		<th>날짜</th>
 		<th>조회수</th>
+		<th>추천수</th>
 	</tr>
 <% 
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -37,21 +38,27 @@
 		Class.forName(driver);
 		conn=DriverManager.getConnection(url, userDB, passwordDB);
 		
+		
 		// 추천 상위노출(3개)
-		pstmt=conn.prepareStatement("SELECT * FROM ARTICLE ORDER BY recommand limit 3"); 
+		pstmt=conn.prepareStatement("SELECT * FROM ARTICLE WHERE ROWNUM<=3 ORDER BY RECOMMAND"); 
 		rs=pstmt.executeQuery();
 		
 		while(rs.next()){
 %>
-		<tr>
-			<td>추천!</td>
-			<td><a href="updateHits.jsp?num=<%= rs.getString("num")%>"><%= rs.getString("title")%></a></td>
-			<td><%= rs.getString("WRITER")%></td>
-			<td><%= rs.getString("WRITEDATE")%></td>
-			<td><%= rs.getString("HITS")%></td>	
-		</tr>
-<%
+			<tr style="color:blue;">
+				<td>추천!</td>
+				<td><a href="updateHits.jsp?num=<%= rs.getString("num")%>"><%= rs.getString("title")%></a></td>
+				<td><%= rs.getString("WRITER")%></td>
+				<td><%= rs.getString("WRITEDATE")%></td>
+				<td><%= rs.getString("HITS")%></td>	
+				<td><%= rs.getString("RECOMMAND")%></td>
+			</tr>
+<% 
+			//System.out.println(rs.getString("NUM"));
 		}
+%>
+<%
+		//}
 
 		// 모든 article 
 		pstmt=conn.prepareStatement("SELECT * FROM ARTICLE ORDER BY num"); 
@@ -65,6 +72,7 @@
 			<td><%= rs.getString("WRITER")%></td>
 			<td><%= rs.getString("WRITEDATE")%></td>
 			<td><%= rs.getString("HITS")%></td>
+			<td><%= rs.getString("RECOMMAND")%></td>
 		</tr>
 <% 
 	 	}

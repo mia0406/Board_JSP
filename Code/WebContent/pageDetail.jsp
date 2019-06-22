@@ -60,6 +60,10 @@
 				<tr>
 					<td>본문</td>
 					<td><%= rs.getString("content")%></td>
+				</tr>
+				<tr>
+					<td>추천수</td>
+					<td><%= rs.getString("recommand")%></td>
 				</tr>				
 			</table>
 <%
@@ -93,5 +97,6 @@
 <% 
 	}
 %>
+<button onclick="location.href='main.jsp'">본문으로</button>
 </body>
 </html>
