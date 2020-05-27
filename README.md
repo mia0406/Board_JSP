@@ -5,10 +5,11 @@
 4. MVC2 + JSP 게시판
 5. Servlet으로만 게시판
 6. Spring 이용한 JSP 게시판
-7. CDI 이용한 게시판
-8. React.js 이용한 게시판
-9. Angular.js 이용한 게시판
-10. Vue.js 이용한 게시판
+7. Spring Boot 이용한 JSP 게시판
+8. CDI 이용한 게시판
+9. React.js 이용한 게시판
+10. Angular.js 이용한 게시판
+11. Vue.js 이용한 게시판
 
 #### 구현 내용
 1. 로그인/로그아웃
